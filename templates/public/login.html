@@ -1,0 +1,160 @@
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-section">
+
+    <div class="auth-card" id="authCard">
+
+        <!-- SIGN UP FORM -->
+        <div class="form-container sign-up-container">
+            <form method="POST" action="/auth/register">
+
+                <h2>Create Account</h2>
+
+                {% if error %}
+                <div class="auth-error">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <input type="text" name="username" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button class="primary-btn">Sign Up</button>
+
+            </form>
+        </div>
+
+
+        <!-- LOGIN FORM -->
+        <div class="form-container sign-in-container">
+            <form method="POST" action="/auth/login">
+
+                <h2>Login</h2>
+
+                {% if error %}
+                <div class="auth-error">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <p class="forgot-link" onclick="openForgotPopup()">Forgot Password?</p>
+                <button class="primary-btn">Login</button>
+
+            </form>
+        </div>
+
+        <!-- OVERLAY -->
+        <div class="overlay-container">
+            <div class="overlay">
+
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost-btn" id="signIn">Sign In</button>
+                </div>
+
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start your journey with us</p>
+                    <button class="ghost-btn" id="signUp">Sign Up</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+
+
+{% if error %}
+<script>
+
+window.onload=function(){
+
+    showAlert("Login Error","{{ error }}");
+
+}
+
+</script>
+{% endif %}
+
+
+{% if success %}
+<script>
+
+window.onload=function(){
+
+    showAlert("Success","{{ success }}");
+
+}
+
+</script>
+{% endif %}
+
+
+<!-- FORGOT PASSWORD POPUP -->
+
+<div id="forgotPopup" class="glass-popup-overlay">
+
+    <div class="glass-popup">
+
+        <h2>Reset Password</h2>
+
+        <input type="email" id="resetEmail" placeholder="Enter registered email">
+
+        <div class="popup-buttons">
+
+            <button class="popup-btn" onclick="checkEmail()">Verify Email</button>
+
+            <button class="popup-btn popup-close" onclick="closeForgotPopup()">Close</button>
+
+        </div>
+
+        <div id="newPasswordArea" style="display:none">
+
+            <input type="password" id="newPassword" placeholder="New Password">
+
+            <div class="popup-buttons">
+
+                <button class="popup-btn" onclick="changePassword()">Change Password</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ALERT POPUP -->
+
+<div id="alertPopup" class="glass-popup-overlay">
+
+    <div class="glass-popup">
+
+        <h2 id="alertTitle">Alert</h2>
+
+        <p id="alertMessage"></p>
+
+        <div class="popup-buttons">
+
+            <button class="popup-btn" onclick="closeAlert()">OK</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

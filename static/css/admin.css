@@ -1,0 +1,370 @@
+body{
+
+margin:0;
+
+font-family:Segoe UI;
+
+background:linear-gradient(135deg,#1e293b,#3730a3);
+
+color:white;
+
+}
+
+
+/* LAYOUT */
+
+.admin-container{
+
+display:flex;
+
+min-height:100vh;
+
+}
+
+
+/* SIDEBAR */
+
+.admin-sidebar{
+
+width:220px;
+
+background:rgba(0,0,0,0.3);
+
+backdrop-filter:blur(10px);
+
+padding:30px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.admin-logo{
+
+font-size:22px;
+
+margin-bottom:20px;
+
+}
+
+.admin-sidebar a{
+
+color:white;
+
+text-decoration:none;
+
+padding:10px;
+
+border-radius:6px;
+
+transition:0.3s;
+
+}
+
+.admin-sidebar a:hover{
+
+background:rgba(255,255,255,0.1);
+
+}
+
+
+/* MAIN AREA */
+
+.admin-main{
+
+flex:1;
+
+padding:50px;
+
+}
+
+
+/* HEADER */
+
+.admin-header h1{
+
+font-size:36px;
+
+margin-bottom:5px;
+
+}
+
+.welcome span{
+
+color:#60a5fa;
+
+}
+
+
+/* STATS */
+
+.stats{
+
+display:flex;
+
+gap:30px;
+
+margin-top:40px;
+
+}
+
+
+/* GLASS CARDS */
+
+.glass-card{
+
+padding:30px;
+
+border-radius:15px;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,0.1);
+
+text-align:center;
+
+width:220px;
+
+box-shadow:0 0 20px rgba(99,102,241,0.3);
+
+}
+
+.glass-card p{
+
+font-size:32px;
+
+font-weight:700;
+
+margin-top:10px;
+
+}
+
+
+/* TABLE */
+
+.glass-table{
+
+margin-top:50px;
+
+background:rgba(255,255,255,0.08);
+
+padding:20px;
+
+border-radius:15px;
+
+backdrop-filter:blur(10px);
+
+}
+
+.glass-table table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+.glass-table th,
+.glass-table td{
+
+padding:12px;
+
+text-align:left;
+
+border-bottom:1px solid rgba(255,255,255,0.1);
+
+}
+
+
+/* BUTTON COLORS */
+
+.view-btn{
+
+color:#60a5fa;
+
+text-decoration:none;
+
+}
+
+.delete-btn{
+
+color:#ef4444;
+
+text-decoration:none;
+
+}
+
+
+
+/* CREATE ADMIN CARD */
+
+.admin-create-card{
+
+max-width:650px;
+margin-top:40px;
+padding:40px;
+
+background:rgba(255,255,255,0.06);
+border-radius:18px;
+
+border:1px solid rgba(255,255,255,0.15);
+
+box-shadow:
+0 0 25px rgba(99,102,241,0.35),
+0 0 60px rgba(99,102,241,0.15);
+
+transition:0.3s;
+
+}
+
+.admin-create-card:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+0 0 35px rgba(99,102,241,0.45),
+0 0 70px rgba(99,102,241,0.2);
+
+}
+
+
+/* INPUT GROUP */
+
+.input-group{
+
+margin-bottom:18px;
+
+}
+
+.input-group input{
+
+width:100%;
+
+padding:14px;
+
+border-radius:10px;
+
+border:1px solid rgba(255,255,255,0.15);
+
+background:rgba(255,255,255,0.08);
+
+color:white;
+
+font-size:14px;
+
+transition:0.25s;
+
+}
+
+
+/* INPUT FOCUS GLOW */
+
+.input-group input:focus{
+
+outline:none;
+
+border-color:#6366f1;
+
+box-shadow:0 0 10px rgba(99,102,241,0.6);
+
+}
+
+
+/* CREATE BUTTON */
+
+.create-admin-btn{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:10px;
+
+background:linear-gradient(90deg,#6366f1,#4f46e5);
+
+color:white;
+
+font-weight:600;
+
+letter-spacing:0.5px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+
+/* BUTTON HOVER */
+
+.create-admin-btn:hover{
+
+transform:scale(1.03);
+
+box-shadow:0 0 20px rgba(99,102,241,0.6);
+
+}
+
+
+.admin-header h1{
+
+font-size:38px;
+
+background:linear-gradient(90deg,#ffffff,#a5b4fc);
+
+background-clip:text;
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+
+/* TOAST NOTIFICATION */
+
+.toast{
+
+position:fixed;
+
+top:30px;
+right:30px;
+
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(12px);
+
+color:white;
+
+padding:16px 25px;
+
+border-radius:10px;
+
+font-weight:500;
+
+box-shadow:
+0 0 15px rgba(99,102,241,0.6),
+0 0 40px rgba(99,102,241,0.3);
+
+opacity:0;
+
+transform:translateY(-20px);
+
+transition:all 0.4s ease;
+
+z-index:999;
+
+}
+
+.toast.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}

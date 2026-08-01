@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PhishGuard Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/glass.css') }}">
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+    <h1>PhishGuard</h1>
+    <p>A complete phishing detection platform</p>
+
+    <div class="scan-box">
+        <input type="text" id="urlInput" placeholder="Enter website URL...">
+        <button id="scanBtn" onclick="scanURL()">Scan</button>
+    </div>
+    <!-- POPUP RESULT -->
+<div id="resultPopup" class="popup hidden">
+
+<div class="popup-card">
+
+<h2>Scan Result</h2>
+<h3 id="scanStatus" class="scan-status"></h3>
+<p id="scanAdvice" class="scan-advice"></p>
+<div class="rings">
+
+<div class="ring">
+<svg width="140" height="140">
+<circle cx="70" cy="70" r="60" class="ring-bg"/>
+<circle cx="70" cy="70" r="60" class="ring-progress" id="confidenceRing"/>
+</svg>
+<div class="ring-text" id="confidenceText">0%</div>
+<p>Confidence</p>
+</div>
+
+<div class="ring">
+<svg width="140" height="140">
+<circle cx="70" cy="70" r="60" class="ring-bg"/>
+<circle cx="70" cy="70" r="60" class="ring-progress" id="chanceRing"/>
+</svg>
+<div class="ring-text" id="chanceText">0%</div>
+<p>Chance</p>
+</div>
+
+<div class="ring">
+<svg width="140" height="140">
+<circle cx="70" cy="70" r="60" class="ring-bg"/>
+<circle cx="70" cy="70" r="60" class="ring-progress" id="overallRing"/>
+</svg>
+<div class="ring-text" id="overallText">0%</div>
+<p>Overall</p>
+</div>
+
+</div>
+
+<button onclick="closePopup()" class="close-btn">Close</button>
+
+</div>
+</div>
+
+    
+</div>
+    
+
+</div>
+
+
+<div class="stats">
+   <div class="glass-card">
+    <h3><i class="ri-scan-line icon"></i>Total Scans</h3>
+    <p>{{ total }}</p>
+</div>
+
+<div class="glass-card">
+    <h3><i class="ri-alert-line icon"></i>Phishing</h3>
+    <p>{{ phishing }}</p>
+</div>
+
+<div class="glass-card">
+    <h3><i class="ri-checkbox-circle-line icon"></i>Legitimate</h3>
+    <p>{{ legitimate }}</p>
+</div>
+
+</div>
+
+<div class="glass-table">
+    <h3>Recent Activity</h3>
+    <table>
+        <tr>
+            <th>URL</th>
+            <th>Status</th>
+            <th>Confidence</th>
+        </tr>
+        {% for scan in scans %}
+        <tr>
+            <td>{{ scan.url }}</td>
+            <td>{{ scan.prediction }}</td>
+            <td>{{ scan.confidence }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock %}

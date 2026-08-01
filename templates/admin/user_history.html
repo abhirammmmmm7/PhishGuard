@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>User Scan History | PhishGuard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+
+</head>
+
+<body>
+
+<div class="admin-container">
+
+<!-- SIDEBAR -->
+<div class="admin-sidebar">
+
+<h2 class="admin-logo">PhishGuard</h2>
+
+<a href="/admin/dashboard">Dashboard</a>
+<a href="/">Main Site</a>
+<a href="/auth/logout">Logout</a>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+<div class="admin-main">
+
+<div class="admin-header">
+
+<h1>User Scan History</h1>
+
+<p class="welcome">
+Viewing scan history
+</p>
+
+</div>
+
+
+<div class="glass-table">
+
+<table>
+
+<thead>
+<tr>
+<th>URL</th>
+<th>Prediction</th>
+<th>Confidence</th>
+<th>Date</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for scan in scans %}
+
+<tr>
+
+<td>{{ scan.url }}</td>
+
+<td class="{% if scan.prediction == 'Phishing' %}phishing{% else %}safe{% endif %}">
+{{ scan.prediction }}
+</td>
+
+<td>{{ scan.confidence }}%</td>
+
+<td>{{ scan.created_at }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

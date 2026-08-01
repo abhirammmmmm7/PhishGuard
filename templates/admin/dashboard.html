@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Admin Dashboard | PhishGuard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="admin-container">
+
+
+<!-- SIDEBAR -->
+<div class="admin-sidebar">
+
+<h2 class="admin-logo">PhishGuard</h2>
+
+<a href="/admin/dashboard">Dashboard</a>
+
+{% if admin_name == "abhiram" %}
+<a href="/admin/create-admin-page">Create Admin</a>
+<a href="/admin/admins">View Admins</a>
+{% endif %}
+
+<a href="/">Main Site</a>
+<a href="/auth/logout">Logout</a>
+
+</div>
+
+
+
+<!-- MAIN CONTENT -->
+
+<div class="admin-main">
+
+<div class="admin-header">
+
+<h1>Admin Dashboard</h1>
+
+<p class="welcome">
+Welcome, <span>{{ admin_name }}</span> 👋
+</p>
+
+</div>
+
+
+
+<div class="stats">
+
+<div class="glass-card">
+<h3>Total Users</h3>
+<p>{{ total_users }}</p>
+</div>
+
+<div class="glass-card">
+<h3>Total Scans</h3>
+<p>{{ total_scans }}</p>
+</div>
+
+</div>
+
+<div class="glass-table">
+
+<h2>Registered Users</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>History</th>
+<th>Delete</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for user in users %}
+
+<tr>
+
+<td>{{ user.id }}</td>
+
+<td>{{ user.username }}</td>
+
+<td>{{ user.email }}</td>
+
+<td>
+<a class="view-btn" href="/admin/user/{{ user.id }}">View</a>
+</td>
+
+<td>
+<a class="delete-btn" href="/admin/delete/{{ user.id }}">Delete</a>
+</td>
+
+</tr>
+
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
